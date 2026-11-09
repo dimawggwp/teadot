@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TEADOT — чайный дом</title>
+<meta name="description" content="TEADOT 茶小堂 — bubble tea, фруктовые и молочные чаи, матча, кофе, моти и макарон. Доставка через Wolt.">
+<link rel="icon" href="images/brand/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== Выбор города ===== -->
+<div class="gate" id="gate" aria-modal="true" role="dialog" hidden>
+  <div class="gate__card">
+    <div class="gate__top">
+      <img src="images/brand/logo.jpg" alt="TEADOT" class="gate__logo">
+      <div class="lang" data-lang-switch></div>
+    </div>
+    <h2 class="gate__title" data-i18n="gateTitle"></h2>
+    <p class="gate__sub" data-i18n="gateSub"></p>
+    <div class="gate__label" data-i18n="gateHas"></div>
+    <div class="gate__grid" id="gateMain"></div>
+    <div class="gate__label" data-i18n="gateOther"></div>
+    <div class="gate__grid gate__grid--small" id="gateOther"></div>
+  </div>
+</div>
+
+<!-- ===== Шапка ===== -->
+<header class="header" id="header">
+  <div class="wrap header__in">
+    <a href="#top" class="header__logo"><img src="images/brand/logo.jpg" alt="TEADOT"></a>
+    <nav class="header__nav">
+      <a href="#menu" data-i18n="navMenu"></a>
+      <a href="#delivery" data-i18n="navDelivery"></a>
+      <a href="#places" data-i18n="navPlaces"></a>
+    </nav>
+    <div class="header__right">
+      <button class="city-btn" id="cityBtn" type="button">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+        <span id="cityName"></span>
+      </button>
+      <div class="lang" data-lang-switch></div>
+      <a class="btn btn--wolt btn--sm header__cta" data-wolt target="_blank" rel="noopener"><span data-i18n="order"></span></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="wrap hero__top">
+      <div>
+        <div class="eyebrow"><span class="cube"></span> <span data-i18n="eyebrow"></span></div>
+        <h1 class="hero__title" data-i18n-html="heroTitle"></h1>
+      </div>
+      <div class="hero__side">
+        <p class="hero__sub" data-i18n="heroSub"></p>
+        <div class="hero__actions">
+          <a class="btn btn--wolt" data-wolt target="_blank" rel="noopener">
+            <span data-i18n="orderWolt"></span>
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M13 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2h12.2l-4.6-4.6L13 5Z"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#menu" data-i18n="seeMenu"></a>
+        </div>
+      </div>
+    </div>
+    <div class="wrap hero__banner">
+      <div class="hero__img"><img src="images/brand/cover2.jpg" alt="TEADOT bubble tea"></div>
+      <div class="hero__tag"><span class="float__dot"></span><span data-i18n="floatA"></span></div>
+      <div class="hero__stats">
+        <div><b id="statItems"></b><span data-i18n="statItems"></span></div>
+        <div><b id="statPlaces"></b><span data-i18n="statPlaces"></span></div>
+        <div><b>★ 8.8</b><span data-i18n="statRating"></span></div>
+        <div><b id="statCities"></b><span data-i18n="statCities"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="marquee__track" id="marquee"></div></div>
+
+  <!-- ===== Преимущества ===== -->
+  <section class="features wrap">
+    <div class="feature"><div class="feature__ic">🧋</div><h3 data-i18n="f1t"></h3><p data-i18n="f1"></p></div>
+    <div class="feature"><div class="feature__ic">🍓</div><h3 data-i18n="f2t"></h3><p data-i18n="f2"></p></div>
+    <div class="feature"><div class="feature__ic">🍡</div><h3 data-i18n="f3t"></h3><p data-i18n="f3"></p></div>
+  </section>
+
+  <!-- ===== Меню ===== -->
+  <section class="menu" id="menu">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow"><span class="cube"></span> <span data-i18n="menuEyebrow"></span></div>
+          <h2 class="h2" data-i18n="menuTitle"></h2>
+        </div>
+        <label class="search">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2Zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z"/></svg>
+          <input type="search" id="search" data-i18n-ph="search">
+        </label>
+      </div>
+    </div>
+    <div class="cats"><div class="wrap cats__wrap">
+      <button class="cats__arrow cats__arrow--l" type="button" data-scroll="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="cats__scroll" id="cats"><div class="cats__in" id="catsIn"></div></div>
+      <button class="cats__arrow cats__arrow--r" type="button" data-scroll="1" aria-label="Scroll right"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div></div>
+    <div class="wrap" id="menuBody"></div>
+  </section>
+
+  <!-- ===== Доставка ===== -->
+  <section class="delivery" id="delivery">
+    <div class="wrap delivery__in">
+      <div>
+        <div class="eyebrow eyebrow--light"><span class="cube"></span> <span data-i18n="navDelivery"></span></div>
+        <h2 class="h2 h2--light" data-i18n="delTitle"></h2>
+        <p class="delivery__sub" data-i18n="delSub"></p>
+        <a class="btn btn--wolt btn--lg" data-wolt target="_blank" rel="noopener"><span data-i18n="orderWolt"></span>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M13 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2h12.2l-4.6-4.6L13 5Z"/></svg></a>
+      </div>
+      <ol class="steps">
+        <li><span>01</span><div><b data-i18n="s1t"></b><p data-i18n="s1"></p></div></li>
+        <li><span>02</span><div><b data-i18n="s2t"></b><p data-i18n="s2"></p></div></li>
+        <li><span>03</span><div><b data-i18n="s3t"></b><p data-i18n="s3"></p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== Точки ===== -->
+  <section class="places" id="places">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow"><span class="cube"></span> <span data-i18n="navPlaces"></span></div>
+          <h2 class="h2"><span data-i18n="placesTitle"></span> <span class="accent" id="placesCity"></span></h2>
+        </div>
+        <button class="btn btn--ghost btn--sm" id="cityBtn2" type="button" data-i18n="changeCity"></button>
+      </div>
+      <div class="places__grid">
+        <div class="places__list" id="placesList"></div>
+        <div class="places__map"><iframe id="map" title="TEADOT map" loading="lazy" allowfullscreen></iframe></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__in">
+    <div class="footer__brand">
+      <img src="images/brand/logo.jpg" alt="TEADOT">
+      <p data-i18n="footerText"></p>
+    </div>
+    <div class="footer__col">
+      <b data-i18n="navMenu"></b>
+      <div id="footerCats"></div>
+    </div>
+    <div class="footer__col">
+      <b data-i18n="contacts"></b>
+      <a href="https://www.instagram.com/teadot_kz/" target="_blank" rel="noopener">Instagram @teadot_kz</a>
+      <a data-wolt target="_blank" rel="noopener">Wolt</a>
+      <a href="#places" data-i18n="navPlaces"></a>
+    </div>
+  </div>
+  <div class="wrap footer__bottom">© <span id="year"></span> TEADOT 茶小堂 · <span data-i18n="pricesNote"></span></div>
+</footer>
+
+<!-- ===== Карточка товара ===== -->
+<div class="modal" id="modal" hidden>
+  <div class="modal__back" data-close></div>
+  <div class="modal__card" role="dialog" aria-modal="true">
+    <button class="modal__x" data-close aria-label="Close">×</button>
+    <div class="modal__img"><img id="mImg" alt=""></div>
+    <div class="modal__body">
+      <div class="modal__cat" id="mCat"></div>
+      <h3 id="mName"></h3>
+      <p id="mDesc"></p>
+      <div class="sizes" id="mSizes"></div>
+      <div class="modal__foot">
+        <div class="modal__price" id="mPrice"></div>
+        <a class="btn btn--wolt" id="mWolt" target="_blank" rel="noopener"><span data-i18n="orderWolt"></span>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M13 5l7 7-7 7-1.4-1.4 4.6-4.6H4v-2h12.2l-4.6-4.6L13 5Z"/></svg></a>
+      </div>
+      <p class="modal__note" id="mNote"></p>
+    </div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
